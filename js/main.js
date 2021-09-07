@@ -1,10 +1,33 @@
 const fidgetSpinner = document.querySelector("#Component_1_1");
+const minutes = document.querySelector(".minutes");
+const seconds = document.querySelector(".seconds");
 let flag = false;
 let i = 0;
 let speed = 1;
 let elements = [];
 let colorOne = "#38b72c";
 let colorTwo = "#5dd14a";
+let sec = 0;
+let min = 0;
+
+const spinOn = () => {
+    flag = true;
+    slowBtn.disabled = false;
+    interval = setInterval(spin, 1000/60);
+    timeReset();
+    timerinterval = setInterval(timeCount, 10);
+    funcBtn.innerHTML = "Zatrzymaj spinnerka";
+    chgColor.disabled = true;
+}
+
+const spinOff = () => {
+    slowBtn.disabled = true;
+    flag = false;
+    clearInterval(interval);
+    clearInterval(timerinterval);
+    funcBtn.innerHTML = "Zakręć spinnerkiem";
+    chgColor.disabled = false;
+}
 
 function spin(){
     i += speed;
@@ -16,28 +39,20 @@ function spin(){
         speed -= 1/30;
         slowBtn.disabled = false;
     } else if(speed < 1/30){
-        slowBtn.disabled = true; 
         speed = 0;
-        flag = false;
-        clearInterval(interval);
-        funcBtn.innerHTML = "Zakręć spinnerkiem";
+        spinOff();
     }
 };
 
 let interval;
+let timerinterval;
 
 function spinUpOrDown(){
     if(flag === false){
-        flag = true;
-        slowBtn.disabled = false;
-        interval = setInterval(spin, 1000/60);
-        funcBtn.innerHTML = "Zatrzymaj spinnerka";
         speed = Math.floor(Math.random() * (64 - 20)) + 20;
+        spinOn();
     } else {
-        flag = false;
-        slowBtn.disabled = true;
-        clearInterval(interval);
-        funcBtn.innerHTML = "Zakręć spinnerkiem";
+        spinOff();
     }
 }
 
@@ -45,20 +60,14 @@ function slower(){
     if(speed > 1){
         speed -- ;
     } else {
-        slowBtn.disabled = true;
-        flag = false;
-        clearInterval(interval);
-        funcBtn.innerHTML = "Zakręć spinnerkiem";
+        spinOff();
     }
 }
 
 function faster(){
     if(flag === false){
-        flag = true;
-        slowBtn.disabled = false;
-        interval = setInterval(spin, 1000/60);
-        funcBtn.innerHTML = "Zatrzymaj spinnerka";
         speed = 4;
+        spinOn();
     } else if(speed < 64 && speed > 1/24){
         speed++;
     }
@@ -66,17 +75,40 @@ function faster(){
 
 function scrollFunc(event){
     if(event.deltaY < 0 && flag === false){
-        flag = true;
-        slowBtn.disabled = false;
         speed = 4;
-        interval = setInterval(spin, 1000/60);
-        funcBtn.innerHTML = "Zatrzymaj spinnerka";
+        spinOn();
     } else if (event.deltaY > 0){
         slower();
     } else {
         faster();
     }
 }
+
+const timeCount = () => {
+    sec += 0.01;
+    if(sec < 9.99){
+        seconds.innerHTML = "0"+sec.toFixed(2);
+    } else {
+        seconds.innerHTML = sec.toFixed(2);
+    }
+    if(sec >= 60){
+        min += 1;
+        sec = 0;
+        if (min < 10){
+            minutes.innerHTML = "0"+min;
+        } else {
+            minutes.innerHTML = min;
+        }
+    }
+}
+
+const timeReset = () => {
+    sec = 0;
+    min = 0;
+    seconds.innerHTML = "00.00";
+    minutes.innerHTML = "00";
+}
+
 
 function changeColor(){
     let option = chgColor.options[chgColor.selectedIndex].value;
@@ -138,3 +170,8 @@ fastBtn.addEventListener("click", faster);
 chgColor.onchange=changeColor;
 
 window.addEventListener('wheel', scrollFunc);
+window.addEventListener('keypress', (e) => {
+    if (e.code == "Space"){
+        spinUpOrDown();
+    }
+});
