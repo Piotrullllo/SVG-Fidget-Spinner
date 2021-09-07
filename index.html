@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="timer"><span class="minutes">00</span>:<span class=seconds>00.00</span></div>
     <div class="fidget">
       <svg id="Component_1_1" data-name="Component 1 – 1" xmlns="http://www.w3.org/2000/svg" width="215" height="195" viewBox="0 0 215 195">
         <g id="El5" data-name="Path 1" transform="translate(59 81)" fill="#38b72c">
@@ -51,24 +52,24 @@
         <circle id="El4" data-name="Ellipse 7" cx="27.5" cy="27.5" r="27.5" transform="translate(80 89)" fill="#38b72c"/>
       </svg>      
     </div>
-    <div class="buttons">
-      <button class="speedUp button">Przyspiesz</button>
-      <button class="startStop button">Zakręć spinnerkiem</button>
-      <button class="speedDown button" disabled>Zwolnij</button>
-      <form class="selector" action="">
-        <label for="colorSelector">Wybierz kolor: </label>
-        <select name="colorSelector" id="colorSelector">
-          <option value="gre">Zielony</option>
-          <option value="red">Czerwony</option>
-          <option value="blu">Niebieski</option>
-          <option value="yel">Żółty</option>
-          <option value="ora">Pomarańczowy</option>
-          <option value="pur">Purpurowy</option>
-          <option value="sil">Srebrny</option>
-          <option value="gol">Złoty</option>
-        </select>
-      </form>
-    </div>
-    <script src="js/main.js"></script>
+  <div class="buttons">
+    <button class="speedUp button">Przyspiesz</button>
+    <button class="startStop button">Zakręć spinnerkiem</button>
+    <button class="speedDown button" disabled>Zwolnij</button>
+    <form class="selector" action="">
+      <label for="colorSelector">Wybierz kolor: </label>
+      <select name="colorSelector" id="colorSelector">
+        <option value="gre">Zielony</option>
+        <option value="red">Czerwony</option>
+        <option value="blu">Niebieski</option>
+        <option value="yel">Żółty</option>
+        <option value="ora">Pomarańczowy</option>
+        <option value="pur">Purpurowy</option>
+        <option value="sil">Srebrny</option>
+        <option value="gol">Złoty</option>
+       </select>
+    </form>
+  </div>
+  <script src="js/main.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ body {
     width: 100vw;
     overflow: hidden;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     margin-top: 10px;
@@ -54,4 +54,10 @@ body {
 }
 #colorSelector{
     height: 30px;
+}
+.timer{
+    font-size: 32px;
+    font-family: sans-serif;
+    color: white;
+    margin-top: 10px;
 }
