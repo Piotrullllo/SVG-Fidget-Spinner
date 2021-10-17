@@ -1,3 +1,7 @@
+const plLang = ["Zakręć spinnerkiem", "Zatrzymaj spinnerka", "Przyspiesz", "Zwolnij", "Język: ", "Wybierz kolor: ","Zielony","Czerwony","Niebieski","Zółty","Pomarańczowy","Purpurowy","Srebrny","Złoty", "Niestandardowy", "Podaj wartość koloru czerwonego (w zakresie 0 - 255): ", "Podaj wartość koloru zielonego (w zakresie 0 - 255): ", "Podaj wartość koloru niebieskiego (w zakresie 0 - 255): ", "Błąd- wartość niepoprawna"];
+const enLang = ["Spin up", "Stop", "Accelerate", "Slow down", "Language: ", "Choose color: ","Green","Red","Blue","Yellow","Orange","Purple","Silver","Gold","Custom", "Enter value of the red color (between 0 and 255): ", "Enter value of the green color (between 0 and 255): ", "Enter value of the blue color (between 0 and 255): ", "Error - incorect value"];
+let curLanguage = [...enLang];
+
 const fidgetSpinner = document.querySelector("#Component_1_1");
 const minutes = document.querySelector(".minutes");
 const seconds = document.querySelector(".seconds");
@@ -16,7 +20,7 @@ const spinOn = () => {
     interval = setInterval(spin, 1000/60);
     timeReset();
     timerinterval = setInterval(timeCount, 10);
-    funcBtn.innerHTML = "Zatrzymaj spinnerka";
+    funcBtn.innerHTML = curLanguage[1];
     chgColor.disabled = true;
 }
 
@@ -25,7 +29,7 @@ const spinOff = () => {
     flag = false;
     clearInterval(interval);
     clearInterval(timerinterval);
-    funcBtn.innerHTML = "Zakręć spinnerkiem";
+    funcBtn.innerHTML = curLanguage[0];
     chgColor.disabled = false;
 }
 
@@ -109,6 +113,55 @@ const timeReset = () => {
     minutes.innerHTML = "00";
 }
 
+function customColor(){
+    let r;
+    let g;
+    let b;
+    let altR;
+    let altG;
+    let altB;
+    while(true){
+        r = parseInt(prompt(curLanguage[15]));
+        if (r >= 0 && r <= 255){
+            break;
+        } else {
+            alert(curLanguage[18]);
+        }
+    }
+    while(true){
+        g = parseInt(prompt(curLanguage[16]));
+        if (g >= 0 && g <= 255){
+            break;
+        } else {
+            alert(curLanguage[18]);
+        }
+    }
+    while(true){
+        b = parseInt(prompt(curLanguage[17]));
+        if (b >= 0 && b <= 255){
+            break;
+        } else {
+            alert(curLanguage[18]);
+        }
+    }
+    colorOne = `rgb(${r},${g},${b})`;
+    if(r < 128){
+        altR = r+64;
+    } else {
+        altR = r-64;
+    }
+    if(g < 128){
+        altG = g+64;
+    } else {
+        altG = g-64;
+    }
+    if(b < 128){
+        altB = b+64;
+    } else {
+        altB = b-64;
+    }
+    colorTwo = `rgb(${altR},${altG},${altB})`;
+}
 
 function changeColor(){
     let option = chgColor.options[chgColor.selectedIndex].value;
@@ -145,6 +198,9 @@ function changeColor(){
             colorOne = "#d5ad59";
             colorTwo = "#f9c442"; 
             break;
+        case 'cus':
+            customColor();
+            break;
         default:
             colorOne = "#38b72c";
             colorTwo = "#5dd14a"; 
@@ -160,10 +216,39 @@ for(i=0; i < 6;i++){
     elements[i] = document.querySelector(`#El${i+1}`)
 }
 
+function changeLanguage(){
+    let lang = chgLang.options[chgLang.selectedIndex].value;
+    switch(lang){
+        case 'en':
+            curLanguage = [...enLang];
+            document.documentElement.lang = 'en';
+            break;
+        case 'pl':
+            curLanguage = [...plLang];
+            document.documentElement.lang = 'pl';
+            break;
+    }
+    if(flag){
+        funcBtn.innerHTML = curLanguage[1];
+    } else {
+        funcBtn.innerHTML = curLanguage[0];
+    }
+    fastBtn.innerHTML = curLanguage[2];
+    slowBtn.innerHTML = curLanguage[3];
+    const colorOptions = document.querySelectorAll("#colorSelector option");
+    for(i=0; i < colorOptions.length; i++){
+        colorOptions[i].innerHTML = curLanguage[i+6];
+    }
+    document.querySelector(".colSelLabel").innerHTML = curLanguage[5];
+    document.querySelector(".langSelLabel").innerHTML = curLanguage[4];
+}
+
 const fastBtn = document.querySelector(".speedUp");
 const funcBtn = document.querySelector(".startStop");
 const slowBtn = document.querySelector(".speedDown");
 const chgColor = document.querySelector("#colorSelector");
+const chgLang = document.querySelector("#langSelect");
+chgLang.addEventListener("change", changeLanguage);
 slowBtn.addEventListener("click", slower);
 funcBtn.addEventListener("click", spinUpOrDown);
 fastBtn.addEventListener("click", faster);

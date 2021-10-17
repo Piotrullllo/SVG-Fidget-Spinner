@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,20 +53,26 @@
       </svg>      
     </div>
   <div class="buttons">
-    <button class="speedUp button">Przyspiesz</button>
-    <button class="startStop button">Zakręć spinnerkiem</button>
-    <button class="speedDown button" disabled>Zwolnij</button>
+    <button class="speedUp button">Accelerate</button>
+    <button class="startStop button">Spin up</button>
+    <button class="speedDown button" disabled>Slow down</button>
     <form class="selector" action="">
-      <label for="colorSelector">Wybierz kolor: </label>
+      <label class="colSelLabel" for="colorSelector">Choose color: </label>
       <select name="colorSelector" id="colorSelector">
-        <option value="gre">Zielony</option>
-        <option value="red">Czerwony</option>
-        <option value="blu">Niebieski</option>
-        <option value="yel">Żółty</option>
-        <option value="ora">Pomarańczowy</option>
-        <option value="pur">Purpurowy</option>
-        <option value="sil">Srebrny</option>
-        <option value="gol">Złoty</option>
+        <option value="gre" selected>Green</option>
+        <option value="red">Red</option>
+        <option value="blu">Blue</option>
+        <option value="yel">Yellow</option>
+        <option value="ora">Orange</option>
+        <option value="pur">Purple</option>
+        <option value="sil">Silver</option>
+        <option value="gol">Gold</option>
+        <option value="cus">Custom</option>
+       </select>
+       <label class="langSelLabel" for="langSelect">Language: </label>
+       <select name="langSelect" id="langSelect">
+         <option value="en" selected>English</option>
+         <option value="pl">Polski</option>
        </select>
     </form>
   </div>

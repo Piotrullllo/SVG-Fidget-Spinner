@@ -52,8 +52,11 @@ body {
     color: white;
     font-size: 16px;
 }
-#colorSelector{
+#colorSelector, #langSelect{
     height: 30px;
+}
+#colorSelector{
+    margin-right: 15px;
 }
 .timer{
     font-size: 32px;
