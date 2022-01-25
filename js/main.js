@@ -1,5 +1,5 @@
-const plLang = ["Zakręć spinnerkiem", "Zatrzymaj spinnerka", "Przyspiesz", "Zwolnij", "Język: ", "Wybierz kolor: ","Zielony","Czerwony","Niebieski","Zółty","Pomarańczowy","Purpurowy","Srebrny","Złoty", "Niestandardowy", "Podaj wartość koloru czerwonego (w zakresie 0 - 255): ", "Podaj wartość koloru zielonego (w zakresie 0 - 255): ", "Podaj wartość koloru niebieskiego (w zakresie 0 - 255): ", "Błąd- wartość niepoprawna"];
-const enLang = ["Spin up", "Stop", "Accelerate", "Slow down", "Language: ", "Choose color: ","Green","Red","Blue","Yellow","Orange","Purple","Silver","Gold","Custom", "Enter value of the red color (between 0 and 255): ", "Enter value of the green color (between 0 and 255): ", "Enter value of the blue color (between 0 and 255): ", "Error - incorect value"];
+const plLang = ["Zakręć spinnerkiem", "Zatrzymaj spinnerka", "Przyspiesz", "Zwolnij", "Język: ", "Wybierz kolor: ","Zielony","Czerwony","Niebieski","Zółty","Pomarańczowy","Purpurowy","Srebrny","Złoty"];
+const enLang = ["Spin up", "Stop", "Accelerate", "Slow down", "Language: ", "Choose color: ","Green","Red","Blue","Yellow","Orange","Purple","Silver","Gold"];
 let curLanguage = [...enLang];
 
 const fidgetSpinner = document.querySelector("#Component_1_1");
@@ -113,56 +113,6 @@ const timeReset = () => {
     minutes.innerHTML = "00";
 }
 
-function customColor(){
-    let r;
-    let g;
-    let b;
-    let altR;
-    let altG;
-    let altB;
-    while(true){
-        r = parseInt(prompt(curLanguage[15]));
-        if (r >= 0 && r <= 255){
-            break;
-        } else {
-            alert(curLanguage[18]);
-        }
-    }
-    while(true){
-        g = parseInt(prompt(curLanguage[16]));
-        if (g >= 0 && g <= 255){
-            break;
-        } else {
-            alert(curLanguage[18]);
-        }
-    }
-    while(true){
-        b = parseInt(prompt(curLanguage[17]));
-        if (b >= 0 && b <= 255){
-            break;
-        } else {
-            alert(curLanguage[18]);
-        }
-    }
-    colorOne = `rgb(${r},${g},${b})`;
-    if(r < 128){
-        altR = r+64;
-    } else {
-        altR = r-64;
-    }
-    if(g < 128){
-        altG = g+64;
-    } else {
-        altG = g-64;
-    }
-    if(b < 128){
-        altB = b+64;
-    } else {
-        altB = b-64;
-    }
-    colorTwo = `rgb(${altR},${altG},${altB})`;
-}
-
 function changeColor(){
     let option = chgColor.options[chgColor.selectedIndex].value;
     switch (option){
@@ -197,9 +147,6 @@ function changeColor(){
         case 'gol':
             colorOne = "#d5ad59";
             colorTwo = "#f9c442"; 
-            break;
-        case 'cus':
-            customColor();
             break;
         default:
             colorOne = "#38b72c";
