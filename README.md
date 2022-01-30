@@ -2,7 +2,7 @@
 Simple fidget spinner app
 
 ## About: 
-This is a simple app that uses SVG graphics to simulate fidget spinner toy. It has also built in time to show how long does the spinner spins.
+This is a simple app that uses SVG graphics to simulate fidget spinner toy. It has also built in timer to show how long does the spinner spins.
 
 ## Controls:
 Space - spin up/stop button,
