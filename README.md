@@ -8,6 +8,3 @@ This is a simple app that uses SVG graphics to simulate fidget spinner toy. It h
 Space - spin up/stop button,
 Scroll up - accelerate,
 Scroll down - slow down.
-
-## Demo:
-The demo is available here: https://piotrullllo.github.io/SVG-Fidget-Spinner/
